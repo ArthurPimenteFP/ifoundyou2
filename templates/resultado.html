@@ -1,0 +1,115 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Calculadora de Gorjeta — Resultado{% endblock %}
+
+{% block content %}
+
+
+<div class="text-center mb-4">
+    <h1><i class="bi bi-receipt"></i> Resultado do Cálculo</h1>
+    <p class="text-muted">Confira abaixo os valores calculados para a sua conta.</p>
+</div>
+
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+       
+        <div class="card shadow mb-4">
+           
+            <div class="card-header bg-primary text-white text-center">
+                <h5 class="mb-0"><i class="bi bi-clipboard-data"></i> Detalhes da Conta</h5>
+            </div>
+
+            <div class="card-body">
+
+              
+                <table class="table table-striped mb-0">
+                    <tbody>
+
+                        
+                        <tr>
+                            <th><i class="bi bi-receipt-cutoff"></i> Valor da conta</th>
+                            
+                            <td class="text-end">R$ {{ '%.2f' | format(valor_conta) }}</td>
+                        </tr>
+
+                      
+                        <tr>
+                            <th>
+                                <i class="bi bi-percent"></i>
+                               
+                                Gorjeta ({{ '%.2f' | format(percentual_gorjeta) }}%)
+                            </th>
+                            <td class="text-end">R$ {{ '%.2f' | format(valor_gorjeta) }}</td>
+                        </tr>
+
+                       
+                        <tr>
+                            <th><i class="bi bi-cash-coin"></i> Valor total</th>
+                            <td class="text-end fw-bold">R$ {{ '%.2f' | format(valor_total) }}</td>
+                        </tr>
+
+                       
+                        <tr>
+                            <th><i class="bi bi-people-fill"></i> Pessoas</th>
+                            <td class="text-end">{{ quantidade_pessoas }}</td>
+                        </tr>
+
+                       
+                        <tr class="table-info">
+                            <th><i class="bi bi-person-check"></i> Valor por pessoa</th>
+                            <td class="text-end fw-bold fs-5">R$ {{ '%.2f' | format(valor_por_pessoa) }}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+               
+
+            </div>
+        </div>
+
+       
+        <div class="card shadow mb-4">
+            <div class="card-body text-center">
+                <h5 class="card-title">Classificação do Pagador</h5>
+
+              
+
+                {% if classificacao == 'Mão de vaca' %}
+                   
+                    <span class="badge classificacao-mao-de-vaca fs-4 p-3">
+                        <i class="bi bi-emoji-frown"></i> {{ classificacao }}
+                    </span>
+
+                {% elif classificacao == 'Legal' %}
+                   
+                    <span class="badge classificacao-legal fs-4 p-3">
+                        
+                        <i class="bi bi-emoji-smile"></i> {{ classificacao }}
+                    </span>
+
+                {% else %}
+                   
+                    <span class="badge classificacao-generoso fs-4 p-3">
+                        <i class="bi bi-emoji-heart-eyes"></i> {{ classificacao }}
+                    </span>
+
+                {% endif %}
+
+            </div>
+        </div>
+       
+        <div class="text-center">
+          
+            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+              
+                <i class="bi bi-arrow-repeat"></i> Novo Cálculo
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

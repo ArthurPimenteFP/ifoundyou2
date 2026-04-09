@@ -1,0 +1,179 @@
+/* ==============================================================================
+   style.css — Arquivo CSS Personalizado da Calculadora de Gorjeta
+   ==============================================================================
+   Este arquivo contém estilos CSS próprios que COMPLEMENTAM o Bootstrap.
+   Ele é carregado DEPOIS do Bootstrap no base.html, então nossas regras
+   podem sobrescrever as regras padrão do framework quando necessário.
+   
+   O Bootstrap já fornece a maior parte da estilização (botões, cards, tabelas,
+   grid, etc.). Aqui definimos apenas os estilos que são específicos da
+   nossa aplicação e que o Bootstrap não oferece por padrão.
+   
+   Usamos "!important" em algumas regras para garantir que nosso estilo
+   tenha prioridade sobre as classes padrão do Bootstrap.
+   ============================================================================== */
+
+
+/* ==============================================================================
+   REGRA 1: Estilo personalizado para a NAVBAR (barra de navegação)
+   ==============================================================================
+   A navbar padrão do Bootstrap tem um fundo sólido simples.
+   Aqui substituímos por um gradiente escuro mais sofisticado, com sombra.
+   ============================================================================== */
+
+/* .navbar-custom: classe que adicionamos à tag <nav> no base.html */
+.navbar-custom {
+    /* linear-gradient: cria um degradê (transição suave) entre duas cores */
+    /* 135deg: ângulo do gradiente (diagonal, do canto superior esquerdo ao inferior direito) */
+    /* #1a1a2e e #16213e: tons de azul escuro/marinho */
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+
+    /* padding: espaçamento interno (1rem = 16px em cima e embaixo, 0 nas laterais) */
+    padding: 1rem 0;
+
+    /* box-shadow: sombra abaixo da navbar para dar sensação de profundidade */
+    /* 0 = deslocamento horizontal, 2px = deslocamento vertical */
+    /* 10px = desfoque, rgba(0,0,0,0.3) = cor preta com 30% de opacidade */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estiliza o texto "Calculadora de Gorjeta" na navbar */
+.navbar-custom .navbar-brand {
+    /* Aumenta o tamanho da fonte do nome da aplicação */
+    font-size: 1.4rem;
+
+    /* font-weight 600 = semi-bold (mais grosso que normal, menos que bold) */
+    font-weight: 600;
+
+    /* letter-spacing: espaçamento entre as letras (0.5px = sutil) */
+    letter-spacing: 0.5px;
+}
+
+
+/* ==============================================================================
+   REGRA 2: Estilo personalizado para o RODAPÉ (footer)
+   ==============================================================================
+   O Bootstrap não tem um componente de rodapé estilizado por padrão.
+   Criamos um rodapé com o mesmo visual da navbar (gradiente escuro)
+   e o posicionamos na parte inferior da página.
+   ============================================================================== */
+
+.footer-custom {
+    /* Mesmo gradiente da navbar para manter consistência visual */
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+
+    /* Cor do texto cinza claro (contraste com fundo escuro) */
+    /* #adb5bd é um tom de cinza do Bootstrap */
+    color: #adb5bd;
+
+    /* Espaçamento interno (1.2rem = ~19px em cima e embaixo) */
+    padding: 1.2rem 0;
+
+    /* Margem superior para separar o rodapé do conteúdo acima */
+    margin-top: 3rem;
+
+    /* Texto um pouco menor que o padrão */
+    font-size: 0.9rem;
+
+    /* Sombra ACIMA do rodapé (valor negativo no Y = sombra para cima) */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ==============================================================================
+   REGRA 3: Estilos para as CLASSIFICAÇÕES DE GORJETA
+   ==============================================================================
+   Cada classificação (Mão de vaca, Legal, Generoso) tem uma cor de fundo
+   diferente para transmitir visualmente o significado:
+     - Vermelho = negativo (gorjeta baixa)
+     - Azul = neutro (gorjeta normal)
+     - Verde = positivo (gorjeta alta)
+   
+   Estas classes são aplicadas aos badges na página de resultados.
+   ============================================================================== */
+
+/* --- Mão de vaca (abaixo de 5%) --- */
+/* Cor vermelha para transmitir a ideia de "pouca gorjeta" */
+.classificacao-mao-de-vaca {
+    /* #dc3545 = vermelho do Bootstrap (cor "danger") */
+    /* !important garante que esta cor prevalece sobre o estilo padrão do badge */
+    background-color: #dc3545 !important;
+
+    /* Texto branco para contraste com o fundo vermelho */
+    color: #fff !important;
+}
+
+/* --- Legal (de 5% até 15%) --- */
+/* Cor azul neutra/positiva para transmitir "gorjeta dentro do esperado" */
+.classificacao-legal {
+    /* #0d6efd = azul do Bootstrap (cor "primary") */
+    background-color: #0d6efd !important;
+    color: #fff !important;
+}
+
+/* --- Generoso (acima de 15%) --- */
+/* Cor verde para transmitir "gorjeta generosa, muito bom!" */
+.classificacao-generoso {
+    /* #198754 = verde do Bootstrap (cor "success") */
+    background-color: #198754 !important;
+    color: #fff !important;
+}
+
+
+/* ==============================================================================
+   ESTILO DO CORPO DA PÁGINA (body)
+   ==============================================================================
+   Estas regras garantem que:
+   1. A página tenha um fundo cinza claro (em vez do branco puro)
+   2. O rodapé fique sempre na parte inferior, mesmo com pouco conteúdo
+      (usando flexbox com min-height: 100vh)
+   ============================================================================== */
+
+body {
+    /* Fundo cinza claro para toda a página (mais suave que branco puro) */
+    background-color: #f0f2f5;
+
+    /* min-height: 100vh = altura mínima de 100% da janela do navegador */
+    /* vh = viewport height (altura da tela visível) */
+    /* Isso garante que a página ocupe pelo menos toda a tela */
+    min-height: 100vh;
+
+    /* display: flex = ativa o layout flexbox no body */
+    /* Isso permite distribuir o espaço entre navbar, conteúdo e rodapé */
+    display: flex;
+
+    /* flex-direction: column = os elementos filhos ficam empilhados verticalmente */
+    /* (navbar em cima, conteúdo no meio, rodapé embaixo) */
+    flex-direction: column;
+}
+
+/* A tag <main> (área de conteúdo) expande para preencher todo o espaço disponível */
+/* Isso "empurra" o rodapé para baixo, mesmo quando há pouco conteúdo na página */
+main {
+    /* flex: 1 = este elemento cresce para ocupar todo o espaço restante */
+    flex: 1;
+}
+
+
+/* ==============================================================================
+   MELHORIAS VISUAIS NOS CARDS
+   ==============================================================================
+   Personaliza a aparência dos cards do Bootstrap para ficarem mais modernos,
+   removendo a borda padrão e arredondando mais os cantos.
+   ============================================================================== */
+
+.card {
+    /* Remove a borda padrão do card (que é uma linha cinza fina) */
+    border: none;
+
+    /* Arredonda os cantos do card (0.75rem ≈ 12px) */
+    /* O padrão do Bootstrap é menor (~0.375rem) */
+    border-radius: 0.75rem;
+}
+
+/* Arredonda apenas os cantos superiores do cabeçalho do card */
+/* para que acompanhem o arredondamento do card */
+.card-header {
+    /* 0.75rem nos cantos superiores, 0 nos inferiores */
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+}

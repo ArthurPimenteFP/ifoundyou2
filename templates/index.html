@@ -1,0 +1,104 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}Calculadora de Gorjeta — Início{% endblock %}
+
+{% block content %}
+
+
+<div class="text-center mb-4">
+    <h1><i class="bi bi-cash-stack"></i> Calculadora de Gorjeta</h1>
+    <p class="text-muted">Preencha os campos abaixo para calcular a gorjeta e dividir a conta.</p>
+</div>
+
+
+<div class="row justify-content-center">
+   
+    <div class="col-md-8 col-lg-6">
+
+       
+        <div class="card shadow">
+            
+            <div class="card-body p-4">
+
+                
+                <form method="POST" action="{{ url_for('index') }}">
+
+                    
+                    <div class="mb-3">
+                       
+                        <label for="valor_conta" class="form-label">
+                            <i class="bi bi-currency-dollar"></i> Valor total da conta (R$)
+                        </label>
+
+                        
+                        <input type="number"
+                               class="form-control"
+                               id="valor_conta"
+                               name="valor_conta"
+                               step="0.01"
+                               min="0.01"
+                               placeholder="Ex: 150.00"
+                               value="{{ valor_conta if valor_conta else '' }}"
+                               required>
+                    </div>
+
+                   
+                    <div class="mb-3">
+                        <label for="quantidade_pessoas" class="form-label">
+                            <i class="bi bi-people"></i> Quantidade de pessoas
+                        </label>
+
+                       
+                        <input type="number"
+                               class="form-control"
+                               id="quantidade_pessoas"
+                               name="quantidade_pessoas"
+                               step="1"
+                               min="1"
+                               placeholder="Ex: 4"
+                               value="{{ quantidade_pessoas if quantidade_pessoas else '' }}"
+                               required>
+                    </div>
+
+                   
+                    <div class="mb-3">
+                        <label for="percentual_gorjeta" class="form-label">
+                            <i class="bi bi-percent"></i> Percentual de gorjeta (%)
+                        </label>
+
+                        
+                        <input type="number"
+                               class="form-control"
+                               id="percentual_gorjeta"
+                               name="percentual_gorjeta"
+                               step="0.01"
+                               min="0"
+                               placeholder="Ex: 10"
+                               value="{{ percentual_gorjeta if percentual_gorjeta else '' }}"
+                               required>
+                    </div>
+
+                 
+                    <div class="d-flex gap-2">
+                       
+                        <button type="submit" class="btn btn-primary flex-grow-1">
+                            <i class="bi bi-calculator"></i> Calcular
+                        </button>
+
+                       
+                        <button type="reset" class="btn btn-outline-secondary">
+                            <i class="bi bi-eraser"></i> Limpar
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
